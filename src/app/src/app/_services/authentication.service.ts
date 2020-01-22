@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../_models';
+import { Token } from '../_models/Token';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -19,19 +20,39 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
+    public isUserLoggedIn() {
+        let token : Token = JSON.parse(localStorage.getItem("token"));
+        if(!token)
+            return false;
+
+        let date = new Date();
+        console.log(date);    
+        let expirationDate = Date.parse(token.expirationDate);
+        console.log(expirationDate);
+        return date.getTime() < expirationDate;
+    }
+
     login(username, password) {
-        return this.http.post<any>(`https://school-diary-api.herokuapp.com/school-diary-api/authenticate/login`, { username, password })
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
+        console.log("test");
+         
+        return this.http.post<Token>(`https://school-diary-api.herokuapp.com/school-diary-api/authenticate/login`, { username, password })
+            .pipe(map(token => {
+                
+                localStorage.setItem('token', JSON.stringify(token));
+                this.http.get<User>('https://school-diary-api.herokuapp.com/school-diary-api/users/details')
+                .subscribe(user => {
+                    console.log(user);
+                    this.currentUserSubject.next(user);
+                });
+                
+                
+                return token;
             }));
     }
 
     logout() {
         // remove user from local storage and set current user to null
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
         this.currentUserSubject.next(null);
     }
 }
