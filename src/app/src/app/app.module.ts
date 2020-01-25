@@ -13,6 +13,7 @@ import { MyCasesComponent } from './_compnents/my-cases/my-cases/my-cases.compon
 import { DaySheduleComponent } from './_compnents/lessons-shedule/lessons-shedule/day-shedule/day-shedule.component';
 import { SheduleElementComponent } from './_compnents/lessons-shedule/shedule-element/shedule-element.component';
 import { AuthInterceptor } from './_services/AuthInterceptor';
+import { CaseComponent } from './_compnents/case/case.component';
 
 
 
@@ -26,7 +27,8 @@ import { AuthInterceptor } from './_services/AuthInterceptor';
     NotesLogComponent,
     MyCasesComponent,
     DaySheduleComponent,
-    SheduleElementComponent
+    SheduleElementComponent,
+    CaseComponent
   ],
   imports: [
     BrowserModule,
