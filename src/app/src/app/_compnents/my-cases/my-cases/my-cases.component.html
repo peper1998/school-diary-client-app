@@ -1,1 +1,7 @@
-<app-case *ngIf="listOfCases!=undefined" [case]="listOfCases[0]" [users]="listOfUsers"></app-case>
+<app-add-case [users]="listOfUsers"></app-add-case>
+<ul>
+    <li *ngFor="let case of listOfCases">
+        <app-case [case]="case" [users]="listOfUsers"></app-case>
+    </li>
+</ul>
+

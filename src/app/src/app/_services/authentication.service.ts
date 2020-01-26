@@ -11,6 +11,8 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
+    public userId:number;
+
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -33,7 +35,6 @@ export class AuthenticationService {
     }
 
     login(username, password) {
-        console.log("test");
          
         return this.http.post<Token>(`https://school-diary-api.herokuapp.com/school-diary-api/authenticate/login`, { username, password })
             .pipe(map(token => {
@@ -42,6 +43,7 @@ export class AuthenticationService {
                 this.http.get<User>('https://school-diary-api.herokuapp.com/school-diary-api/users/details')
                 .subscribe(user => {
                     console.log(user);
+                    this.userId=user.id;
                     this.currentUserSubject.next(user);
                 });
                 

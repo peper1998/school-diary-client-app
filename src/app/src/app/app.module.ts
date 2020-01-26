@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { HomeComponent } from './_compnents/home/home.component';
 import { LessonsSheduleComponent } from './_compnents/lessons-shedule/lessons-shedule/lessons-shedule.component';
@@ -14,6 +14,9 @@ import { DaySheduleComponent } from './_compnents/lessons-shedule/lessons-shedul
 import { SheduleElementComponent } from './_compnents/lessons-shedule/shedule-element/shedule-element.component';
 import { AuthInterceptor } from './_services/AuthInterceptor';
 import { CaseComponent } from './_compnents/case/case.component';
+import { AddCaseComponent } from './_compnents/add-case/add-case.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -28,14 +31,18 @@ import { CaseComponent } from './_compnents/case/case.component';
     MyCasesComponent,
     DaySheduleComponent,
     SheduleElementComponent,
-    CaseComponent
+    CaseComponent,
+    AddCaseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    FormsModule
   ],
+  schemas:[NO_ERRORS_SCHEMA], 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

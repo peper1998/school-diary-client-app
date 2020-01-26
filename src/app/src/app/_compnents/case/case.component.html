@@ -1,17 +1,17 @@
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <div>TOPIC: {{case.topic}}</div>
-      </div>
-      <div class="col">
-        <button *ngIf="!isOpened" (click)="open()" mat-button>otworz</button>
-      </div>
+  <div class="row">
+    <div class="col">
+      <div>TOPIC: {{case.topic}}</div>
     </div>
+    <div class="col">
+      <button *ngIf="!isOpened" (click)="open()" mat-button>otworz</button>
+    </div>
+  </div>
 
-<div class="overflow_scroll" *ngIf="isOpened">
+  <div class="overflow_scroll" *ngIf="isOpened">
     <ul>
-        <li *ngFor="let msg of messagesList;let i = index">
-            {{usersForMessages[i]}} :   {{ msg.message }}
-        </li>
+      <li *ngFor="let msg of messagesList;let i = index">
+        {{usersForMessages[i]}} : {{ msg.message }}
+      </li>
     </ul>
-</div>
+  </div>

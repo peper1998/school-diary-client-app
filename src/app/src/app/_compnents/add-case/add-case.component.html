@@ -1,0 +1,25 @@
+<div class="container addcase_height">
+    <div *ngIf="!isFormOpened" class="row">
+        <div class="col">
+            <div>Click to add the case</div>
+        </div>
+        <div class="col">
+            <button (click)="open()" mat-button>Dodaj sprawe</button>
+        </div>
+    </div>
+    <div *ngIf="isFormOpened">
+        <form [formGroup]="caseTopicForm">
+            <input formControlName="topic" placeholder="Topic">
+        </form>
+        <form [formGroup]="caseUsersForm" (ngSubmit)="submit()">
+            <label formArrayName="users" *ngFor="let user of caseUsersForm.controls.users.controls; let i = index">
+                <input type="checkbox" [formControlName]="i" />
+                <div style="width: 100px;">
+                    {{dropdownItems[i].item_text}}
+                </div>
+            </label>
+
+            <button>submit</button>
+        </form>
+    </div>
+</div>
