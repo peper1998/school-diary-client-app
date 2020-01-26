@@ -14,4 +14,8 @@
         {{usersForMessages[i]}} : {{ msg.message }}
       </li>
     </ul>
+    <form [formGroup]="messageForm">
+      <input formControlName="message">
+    </form>
+    <button (click)="send()" mat-button>Wyślij</button>
   </div>

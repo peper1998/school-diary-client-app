@@ -31,9 +31,21 @@ export class CasesService {
     return  this.http.post<IssuePostModel>('https://school-diary-api.herokuapp.com/school-diary-api/issues',model);
   }
 
+  public addMessage(message:string, caseId:number):Observable<any>{
+    var model = new IssueMessagePostModel();
+    model.issueId=caseId;
+    model.message=message;
+    return this.http.post<IssueMessagePostModel>('https://school-diary-api.herokuapp.com/school-diary-api/issueMessages',model);
+  }
+  
 }
 
 export class IssuePostModel{
   topic:string;
   membersIds:number[];
+}
+
+export class IssueMessagePostModel{
+  message:string; 
+  issueId:number;
 }
