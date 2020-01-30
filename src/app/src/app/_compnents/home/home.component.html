@@ -1,11 +1,12 @@
 <div *ngIf="isUserLoggedIn">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="nav-link" routerLink="my-lessons-shedule" routerLinkActive="active">Mój plan lekcji</a>
+        <a class="nav-link" routerLink="lessons-shedule" routerLinkActive="active">Mój plan lekcji</a>
         <a class="nav-link" routerLink="notes-log" routerLinkActive="active">Dziennik uwag</a>
+        <a class="nav-link" routerLink="grades" routerLinkActive="active">Oceny</a>
         <a class="nav-link" routerLink="my-cases" routerLinkActive="active">Moje sprawy</a>
     </nav>
     <router-outlet></router-outlet>
 </div>
 <div *ngIf="!isUserLoggedIn">
-    <app-login (isUserLoggedIn)="logged($event)"></app-login>
+    <app-login (userLoggedIn)="logged($event)"></app-login>
 </div>

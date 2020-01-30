@@ -1,0 +1,20 @@
+<div *ngIf="isDataLoaded">
+    Dziecko: {{parentDetails.children[0].details.name}} {{parentDetails.children[0].details.surname}} <button (click)="nextChild()">>>></button><br>
+    Przedmiot: {{subjects[subjectIdx].name}} <button (click)="nextSubject()">>>></button>
+    <br>
+    <div *ngIf="grades.length > 0">
+    <ul>
+        <li *ngFor="let grade of grades">
+            Ocena z {{grade.gradeColumn.name }} : {{ grade.value }}       
+        </li>
+    </ul>
+    </div>
+    <div *ngIf="grades.length == 0">
+        Brak ocen
+    </div>
+</div>
+<div *ngIf="!isDataLoaded">
+    Loading...
+</div>
+
+

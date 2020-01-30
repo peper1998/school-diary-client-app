@@ -19,6 +19,7 @@ export class AppComponent {
 
     logout() {
         this.authenticationService.logout();
-        this.router.navigate(['/login']);
+        location.href = '/';
+        //this.router.navigate(['/login']);
     }
 }
