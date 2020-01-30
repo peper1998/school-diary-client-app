@@ -1,0 +1,35 @@
+<div *ngIf="isDataLoaded">
+<table class="table table-info table-bordered">
+    <tr><td class="text-center">#####</td><td *ngFor="let gradeColumn of gradesColumns; let i = index">{{ gradeColumn.name }} <a href="javascript:void(0);" (click)="deleteGradeColumn(i)">-</a></td><td><button (click)="addColumn()">+</button></td></tr>
+
+    <tr *ngFor="let student of schoolClassStudents; let i = index">
+        <td>{{i + 1}}. {{student.name}} {{student.surname}}</td>
+        <td *ngFor="let grade of grades[i]; let j = index"> 
+            <span *ngIf="grade">{{grade.value}} <a href="javascript:void(0);" (click)="deleteGrade(i, j)">-</a></span>
+            <span *ngIf="!grade">
+                <button (click)="addGrade(i, j)">+</button>
+            </span>
+        </td>
+    </tr>
+</table>
+
+<div *ngIf="gradeForm && selectedColumn && selectedStudent">
+    Ocena dla: {{selectedStudent.name}} {{selectedStudent.surname}} z {{selectedColumn.name}}
+    <form [formGroup]="gradeForm" (ngSubmit)="submitGrade()">
+        <input type="number" formControlName="grade" />
+        <button>Dodaj</button>
+    </form>
+</div>
+
+<div *ngIf="gradeColumnForm">
+    Nazwa nowej kolumny:
+    <form [formGroup]="gradeColumnForm" (ngSubmit)="submitGradeColumn()">
+        <input type="text" formControlName="name" />
+        <button>Dodaj</button>
+    </form>
+</div>
+
+</div>
+<div *ngIf="!isDataLoaded">
+    Loading...
+</div>

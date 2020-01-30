@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
+import { HomeComponent } from '../_compnents/home/home.component';
 
 @Component({
     selector: 'app-login',
@@ -44,8 +45,9 @@ export class LoginComponent implements OnInit {
     get f() { return this.loginForm.controls; }
 
     onSubmit() {
+        
         this.submitted = true;
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
         this.logged.emit(true);
         
         // stop here if form is invalid
@@ -58,8 +60,11 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                
                     //this.router.navigate([this.returnUrl]);
-                    this.router.navigate(['/home']);
+                    //this.router.navigate(['/home']);
+                    location.href = '/';
+                    
                 },
                 error => {
                     this.loading = false;

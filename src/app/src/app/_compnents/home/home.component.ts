@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../_services';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -9,9 +10,15 @@ import { AuthenticationService } from '../../_services';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService) {
+    
+   }
 
   public isUserLoggedIn = false;
+
+  userLoggedIn(logged: boolean) {
+    this.isUserLoggedIn = logged;
+  }
 
   ngOnInit() {
     this.isUserLoggedIn = this.authenticationService.isUserLoggedIn();
