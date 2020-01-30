@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common';
 import { GradesComponent } from './_compnents/grades/grades.component';
 import { GradesBridgeComponent } from './_compnents/grades-bridge/grades-bridge.component';
 import { GradesPreviewParentComponent } from './_compnents/grades-preview-parent/grades-preview-parent.component';
+import { GradesPreviewStudentComponent } from './_compnents/grades-preview-student/grades-preview-student/grades-preview-student.component';
 
 
 
@@ -33,7 +34,8 @@ import { GradesPreviewParentComponent } from './_compnents/grades-preview-parent
     AddCaseComponent,
     GradesComponent,
     GradesBridgeComponent,
-    GradesPreviewParentComponent
+    GradesPreviewParentComponent,
+    GradesPreviewStudentComponent
   ],
   imports: [
     BrowserModule,

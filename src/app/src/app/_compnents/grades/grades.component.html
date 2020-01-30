@@ -1,4 +1,5 @@
 <div *ngIf="isDataLoaded">
+    Nauczyciel: {{teacherDetails.details.name}} {{teacherDetails.details.surname}}<br>
 <table class="table table-info table-bordered">
     <tr><td class="text-center">#####</td><td *ngFor="let gradeColumn of gradesColumns; let i = index">{{ gradeColumn.name }} <a href="javascript:void(0);" (click)="deleteGradeColumn(i)">-</a></td><td><button (click)="addColumn()">+</button></td></tr>
 

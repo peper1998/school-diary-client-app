@@ -20,6 +20,11 @@ export class HomeComponent implements OnInit {
     this.isUserLoggedIn = logged;
   }
 
+  logout() {
+    this.authenticationService.logout();
+    location.href = '/';
+  }
+
   ngOnInit() {
     this.isUserLoggedIn = this.authenticationService.isUserLoggedIn();
   }
